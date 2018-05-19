@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { Events, Platform } from 'ionic-angular';
+import {Events, NavController, Platform} from 'ionic-angular';
+import {Web3Service} from "../../../util/web3.service";
+import {HomePage} from "../../home/home";
 
 @Component({
   selector: 'incoming-data-menu',
   templateUrl: 'incoming-data-menu.html',
+  providers: [NavController],
 })
 export class IncomingDataMenuPage {
   public https: boolean;
@@ -15,7 +18,9 @@ export class IncomingDataMenuPage {
 
   constructor(
     private events: Events,
-    private platform: Platform
+    private platform: Platform,
+    private w3Service: Web3Service,
+    private navCtrl: NavController,
   ) {
     this.https = false;
     this.showIncomingDataMenu = false;
@@ -45,6 +50,9 @@ export class IncomingDataMenuPage {
   }
 
   public close(redirTo: string, value: string) {
+    this.w3Service.addToken(value);
+    this.w3Service.applyToken(value);
+
     if (redirTo == 'AmountPage') {
       let coin = this.coin ? this.coin : 'btc';
       this.events.publish('finishIncomingDataMenuEvent', { redirTo, value, coin });

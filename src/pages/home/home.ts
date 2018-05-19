@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild } from '@angular/core';
+import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
   Events,
@@ -47,13 +47,14 @@ import {CreateWalletPage} from "../add/create-wallet/create-wallet";
 import {ImportWalletPage} from "../add/import-wallet/import-wallet";
 import {Web3Service} from "../../util/web3.service";
 import {Observable} from "rxjs/Observable";
+import {LocalStorage} from "../../providers/persistence/storage/local-storage";
 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
   @ViewChild('showCard') showCard;
   public wallets: any;
   public walletsBtc: any;
@@ -83,8 +84,9 @@ export class HomePage {
   private zone: any;
 
   public creatureApiHost: string = 'http://jjmonsterapi.online/avatar.php?seed=';
-  public creatureToken: string = '66789';
-  public tokensBalance: any = '10';
+  public creatureToken: string = null;
+  public tokensBalance: any = '0';
+  public disabledButton: boolean = false;
 
   constructor(
     private plt: Platform,
@@ -118,11 +120,51 @@ export class HomePage {
     this.showReorderBtc = false;
     this.showReorderBch = false;
     this.zone = new NgZone({ enableLongStackTrace: false });
-      this.getBalance();
   }
 
-  getBalance() {
-    this.w3Service.balance().then(balance => this.tokensBalance  = balance);
+  ngOnInit () {
+      this.initW3();
+  }
+
+  checkButtonAvailability() {
+      if (this.tokensBalance == '0') {
+          this.disabledButton = true;
+
+          return;
+      }
+
+      this.persistenceProvider.getTokens().then(tokens => {
+          if (tokens instanceof Array && tokens.length > 0) {
+              this.disabledButton = false;
+          } else {
+              this.disabledButton = true;
+          }
+      });
+  }
+
+  initW3() {
+    this.w3Service.balance().then(balance => { console.log('BALANCE' + balance, balance); this.tokensBalance  = balance; this.checkButtonAvailability(); } );
+    this.w3Service.getCreature().then(creature => this.creatureToken = creature);
+    this.checkButtonAvailability();
+  }
+
+  levelUp() {
+    if (this.tokensBalance == '0') {
+      return;
+    }
+
+    this.persistenceProvider.getTokens().then(tokens => {
+      if (tokens instanceof Array && tokens.length > 0) {
+          let token = tokens.shift();
+
+          console.log('TOKEN REDEEMED: ' + token);
+          console.log('TOKENS: ' + tokens);
+          this.w3Service.reGenerateCreature(token).then(hash => this.initW3());
+          this.persistenceProvider.storeTokens(tokens);
+      } else {
+        this.disabledButton = true;
+      }
+    });
   }
 
   ionViewWillEnter() {

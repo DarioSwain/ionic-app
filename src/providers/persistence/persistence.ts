@@ -528,4 +528,31 @@ export class PersistenceProvider {
   removeLockStatus(): Promise<void> {
     return this.storage.remove('lockStatus');
   };
+
+  saveToken(token: string) {
+    this.storage.get('tokens').then(tokens => {
+        if (tokens instanceof Array) {
+            if (tokens.indexOf(token) > -1) {
+                return;
+            }
+        } else {
+          tokens = [];
+            this.storage.create('tokens', tokens);
+        }
+
+        tokens.push(token);
+        this.storage.set('tokens', tokens);
+    });
+
+    console.log(this.storage.get('tokens').then(tokens => console.log(tokens)));
+  }
+
+  storeTokens(tokens: any) {
+      this.storage.set('tokens', tokens);
+  }
+
+  getTokens():Promise<any> {
+      return this.storage.get('tokens');
+  }
+
 }

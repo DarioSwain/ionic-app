@@ -13,6 +13,8 @@ import { PopupProvider } from '../../providers/popup/popup';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { WalletProvider } from '../../providers/wallet/wallet';
 import { FinishModalPage } from '../finish/finish';
+import {HomePage} from "../home/home";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-paper-wallet',
@@ -59,6 +61,8 @@ export class PaperWalletPage {
   ) {
     this.bitcore = this.bwcProvider.getBitcore();
     this.isCordova = this.platformProvider.isCordova;
+      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.popToRoot();
   }
 
   ionViewWillLeave() {

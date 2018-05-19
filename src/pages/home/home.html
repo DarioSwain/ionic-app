@@ -161,8 +161,11 @@
       </ion-item-divider>
 
       <ion-card>
-        <img class="creature-image" src="{{ creatureApiHost }}?{{ creatureToken }}"/>
+        <img *ngIf="creatureToken" class="creature-image" src="{{ creatureApiHost }}?{{ creatureToken }}"/>
       </ion-card>
+
+      <button *ngIf="!disabledButton" (click)="levelUp()" ion-button full>Level UP (1 token)</button>
+      <button *ngIf="disabledButton" [disabled]="disabledButton" ion-button full>Unfortunately, you don't have a tokens yet...</button>
 
       <!--<ion-list reorder="{{showReorderBtc}}" (ionItemReorder)="reorderWalletsBtc($event)">-->
         <!--<button ion-item *ngFor="let wallet of walletsBtc" (click)="goToWalletDetails(wallet)">-->
