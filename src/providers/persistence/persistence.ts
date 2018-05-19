@@ -555,4 +555,11 @@ export class PersistenceProvider {
       return this.storage.get('tokens');
   }
 
+  saveAccount(account: string) {
+      this.storage.set('account', account);
+  }
+
+  getAccount() {
+      return this.storage.get('account');
+  }
 }

@@ -33,6 +33,11 @@ export class SendPage {
   public hasBchWallets: boolean;
   public hasContacts: boolean;
   public contactsShowMore: boolean;
+  public coupon1MsgOn = false;
+  public coupon2MsgOn = false;
+  public coupon3MsgOn = false;
+  public couponMsg: string = 'Coupon has been sent to your email';
+
   private CONTACTS_SHOW_LIMIT: number = 10;
   private currentContactsPage: number = 0;
 
