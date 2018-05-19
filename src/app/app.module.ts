@@ -166,7 +166,6 @@ import { ComponentsModule } from './../components/components.module';
 
 /* Providers */
 import { ProvidersModule } from './../providers/providers.module';
-import {MetaModule} from "../meta/meta.module";
 import {UtilModule} from "../util/util.module";
 
 /* Read translation files */
@@ -315,7 +314,6 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     ZXingScannerModule.forRoot(),
-    MetaModule,
     UtilModule,
   ],
   bootstrap: [IonicApp],

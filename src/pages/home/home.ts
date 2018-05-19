@@ -45,6 +45,8 @@ import { ReplaceParametersProvider } from '../../providers/replace-parameters/re
 import { WalletProvider } from '../../providers/wallet/wallet';
 import {CreateWalletPage} from "../add/create-wallet/create-wallet";
 import {ImportWalletPage} from "../add/import-wallet/import-wallet";
+import {Web3Service} from "../../util/web3.service";
+import {Observable} from "rxjs/Observable";
 
 
 @Component({
@@ -106,7 +108,8 @@ export class HomePage {
     private feedbackProvider: FeedbackProvider,
     private bitPayCardProvider: BitPayCardProvider,
     private translate: TranslateService,
-    private replaceParametersProvider: ReplaceParametersProvider
+    private replaceParametersProvider: ReplaceParametersProvider,
+    private w3Service: Web3Service,
   ) {
     this.updatingWalletId = {};
     this.addressbook = {};
@@ -115,6 +118,11 @@ export class HomePage {
     this.showReorderBtc = false;
     this.showReorderBch = false;
     this.zone = new NgZone({ enableLongStackTrace: false });
+      this.getBalance();
+  }
+
+  getBalance() {
+    this.w3Service.balance().then(balance => this.tokensBalance  = balance);
   }
 
   ionViewWillEnter() {
