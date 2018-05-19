@@ -369,25 +369,27 @@ export class ProfileProvider {
   private askToEncryptWallet(wallet: any): Promise<any> {
     return new Promise((resolve, reject) => {
 
-      if (!wallet.canSign()) return resolve();
+      return resolve();
 
-      var title = this.translate.instant('Would you like to protect this wallet with a password?');
-      var message = this.translate.instant('Encryption can protect your funds if this device is stolen or compromised by malicious software.');
-      var okText = this.translate.instant('Yes');
-      var cancelText = this.translate.instant('No');
-      this.popupProvider.ionicConfirm(title, message, okText, cancelText).then((res: any) => {
-        if (!res) {
-          return this.showWarningNoEncrypt().then((res) => {
-            if (res) return resolve()
-            return this.encrypt(wallet).then(() => {
-              return resolve();
-            });
-          });
-        }
-        return this.encrypt(wallet).then(() => {
-          return resolve();
-        });
-      });
+      // if (!wallet.canSign()) return resolve();
+      //
+      // var title = this.translate.instant('Would you like to protect this wallet with a password?');
+      // var message = this.translate.instant('Encryption can protect your funds if this device is stolen or compromised by malicious software.');
+      // var okText = this.translate.instant('Yes');
+      // var cancelText = this.translate.instant('No');
+      // this.popupProvider.ionicConfirm(title, message, okText, cancelText).then((res: any) => {
+      //   if (!res) {
+      //     return this.showWarningNoEncrypt().then((res) => {
+      //       if (res) return resolve()
+      //       return this.encrypt(wallet).then(() => {
+      //         return resolve();
+      //       });
+      //     });
+      //   }
+      //   return this.encrypt(wallet).then(() => {
+      //     return resolve();
+      //   });
+      // });
     });
   }
 

@@ -43,6 +43,8 @@ import { ProfileProvider } from '../../providers/profile/profile';
 import { ReleaseProvider } from '../../providers/release/release';
 import { ReplaceParametersProvider } from '../../providers/replace-parameters/replace-parameters';
 import { WalletProvider } from '../../providers/wallet/wallet';
+import {CreateWalletPage} from "../add/create-wallet/create-wallet";
+import {ImportWalletPage} from "../add/import-wallet/import-wallet";
 
 
 @Component({
@@ -77,6 +79,10 @@ export class HomePage {
   private isNW: boolean;
   private updatingWalletId: object;
   private zone: any;
+
+  public creatureApiHost: string = 'http://jjmonsterapi.online/avatar.php?seed=';
+  public creatureToken: string = '66789';
+  public tokensBalance: any = '10';
 
   constructor(
     private plt: Platform,
@@ -404,7 +410,9 @@ export class HomePage {
   }
 
   public goToAddView(): void {
-    this.navCtrl.push(AddPage);
+    let isShared = false;
+      this.navCtrl.push(CreateWalletPage, { isShared });
+    // this.navCtrl.push(AddPage);
   }
 
   public goToWalletDetails(wallet: any): void {

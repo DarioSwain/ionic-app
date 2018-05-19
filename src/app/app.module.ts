@@ -12,7 +12,7 @@ import { MomentModule } from 'angular2-moment';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 /* Copay App */
-import env from '../environments';
+import env from '../environments/dev';
 import { CopayApp } from './app.component';
 
 /* Pages */
@@ -166,6 +166,8 @@ import { ComponentsModule } from './../components/components.module';
 
 /* Providers */
 import { ProvidersModule } from './../providers/providers.module';
+import {MetaModule} from "../meta/meta.module";
+import {UtilModule} from "../util/util.module";
 
 /* Read translation files */
 export function createTranslateLoader(http: HttpClient) {
@@ -312,7 +314,9 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    ZXingScannerModule.forRoot()
+    ZXingScannerModule.forRoot(),
+    MetaModule,
+    UtilModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

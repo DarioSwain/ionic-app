@@ -3,6 +3,18 @@ page-home {
   ion-content .fixed-content {
     background: $toolbar-background;
   }
+
+  .creature-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: -35px;
+  }
+
+  .move-down {
+    margin-top: 80px;
+  }
+
   .home-logo {
     height: 24px;
     position: relative;

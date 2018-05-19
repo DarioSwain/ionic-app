@@ -66,20 +66,20 @@
   </ion-list>
 
   <ion-list *ngIf="type === 'privateKey'">
-    <ion-item-divider>{{'Private Key' | translate}}</ion-item-divider>
+    <ion-item-divider>{{'Token' | translate}}</ion-item-divider>
     <ion-item>{{data}}</ion-item>
-    <button ion-item (click)="close('PaperWalletPage', data)">
-      <ion-icon item-start>
-        <img src="assets/img/icon-import.svg">
-      </ion-icon>
-      <span translate>Sweep paper wallet</span>
-    </button>
-    <button ion-item copy-to-clipboard="{{ data }}">
-      <ion-icon item-start>
-        <img src="assets/img/icon-paperclip.svg">
-      </ion-icon>
-      <span translate>Copy to clipboard</span>
-    </button>
+    <!--<button ion-item (click)="close('PaperWalletPage', data)">-->
+      <!--<ion-icon item-start>-->
+        <!--<img src="assets/img/icon-import.svg">-->
+      <!--</ion-icon>-->
+      <!--<span translate>Sweep paper wallet</span>-->
+    <!--</button>-->
+    <!--<button ion-item copy-to-clipboard="{{ data }}">-->
+      <!--<ion-icon item-start>-->
+        <!--<img src="assets/img/icon-paperclip.svg">-->
+      <!--</ion-icon>-->
+      <!--<span translate>Copy to clipboard</span>-->
+    <!--</button>-->
   </ion-list>
 
   <button ion-button clear color="danger" class="button-standard" (click)="close(null, null)">

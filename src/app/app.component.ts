@@ -181,8 +181,8 @@ export class CopayApp {
         this.logger.warn('LoadAndBindProfile', err.message);
         this.rootPage =
           err.message == 'ONBOARDINGNONCOMPLETED: Onboarding non completed'
-            ? OnboardingPage
-            : DisclaimerPage;
+            ? TabsPage
+            : TabsPage;
       });
   }
 
@@ -205,7 +205,7 @@ export class CopayApp {
     } else {
       this.logger.info('No profile exists.');
       this.profile.createProfile();
-      this.rootPage = OnboardingPage;
+      this.rootPage = TabsPage;
     }
   }
 

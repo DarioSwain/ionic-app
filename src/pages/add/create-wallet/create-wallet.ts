@@ -101,6 +101,8 @@ export class CreateWalletPage implements OnInit {
     if (this.isShared) {
       this.createForm.get('myName').setValidators([Validators.required]);
     }
+
+      this.setOptsAndCreate();
   }
 
   public setTotalCopayers(n: number): void {
@@ -147,17 +149,27 @@ export class CreateWalletPage implements OnInit {
     this.createForm.controls['derivationPath'].setValue(path);
   }
 
+  private makeid() {
+      let text = "";
+      let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (let i = 0; i < 5; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+  }
+
   public setOptsAndCreate(): void {
 
     let opts: any = {
-      name: this.createForm.value.walletName,
-      m: this.createForm.value.requiredCopayers,
-      n: this.createForm.value.totalCopayers,
-      myName: this.createForm.value.totalCopayers > 1 ? this.createForm.value.myName : null,
-      networkName: this.createForm.value.testnetEnabled ? 'testnet' : 'livenet',
+      name: 'Johnstick - Wallet - ' + this.makeid(),
+      m: 1,
+      n: 1,
+      myName: 'Johnstick' + this.makeid(),
+      networkName: 'testnet',
       bwsurl: this.createForm.value.bwsURL,
       singleAddress: this.createForm.value.singleAddress,
-      coin: this.createForm.value.coin
+      coin: 'btc'
     };
 
     let setSeed = this.createForm.value.selectedSeed == 'set';

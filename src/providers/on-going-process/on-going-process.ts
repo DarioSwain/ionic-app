@@ -26,7 +26,7 @@ export class OnGoingProcessProvider {
       'connectingGlidera': this.translate.instant('Connecting to Glidera...'),
       'connectingShapeshift': this.translate.instant('Connecting to ShapeShift...'),
       'creatingTx': this.translate.instant('Creating transaction...'),
-      'creatingWallet': this.translate.instant('Creating Wallet...'),
+      'creatingWallet': this.translate.instant('Creating Account...'),
       'deletingWallet': this.translate.instant('Deleting Wallet...'),
       'extractingWalletInfo': this.translate.instant('Extracting Wallet information...'),
       'fetchingPayPro': this.translate.instant('Fetching payment information...'),
