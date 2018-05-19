@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import {Events, NavController, Platform} from 'ionic-angular';
 import {Web3Service} from "../../../util/web3.service";
-import {HomePage} from "../../home/home";
 
 @Component({
-  selector: 'incoming-data-menu',
-  templateUrl: 'incoming-data-menu.html',
-  providers: [NavController],
+    selector: 'incoming-data-menu',
+    templateUrl: 'incoming-data-menu.html',
+    providers: [NavController],
 })
 export class IncomingDataMenuPage {
   public https: boolean;

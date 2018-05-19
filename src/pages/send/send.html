@@ -7,19 +7,19 @@
    <ion-card>
     <img src="assets/img/coupone-1.jpg"/>
        <div *ngIf="coupon1MsgOn === true"  class="coupon-msg"> {{ couponMsg }} </div>
-    <button *ngIf="coupon1MsgOn === false"  (click)="coupon1MsgOn = true;" ion-button block>Redeem coupons for 10 tokens</button>
+    <button *ngIf="coupon1MsgOn === false"  (click)="coupon1MsgOn = true;" ion-button block>Redeem coupon (2 tokens)</button>
   </ion-card>
 
   <ion-card>
     <img src="assets/img/coupone-2.jpg"/>
       <div *ngIf="coupon2MsgOn === true" class="coupon-msg">{{ couponMsg }} </div>
-    <button *ngIf="coupon2MsgOn === false" (click)="coupon2MsgOn = true;" ion-button block>Redeem coupons for 15 tokens</button>
+    <button *ngIf="coupon2MsgOn === false" (click)="coupon2MsgOn = true;" ion-button block>Redeem coupon  (5 tokens)</button>
   </ion-card>
 
   <ion-card>
     <img src="assets/img/coupone-3.jpg"/>
       <div *ngIf="coupon3MsgOn === true" class="coupon-msg">{{ couponMsg }} </div>
-    <button *ngIf="coupon3MsgOn === false" (click)="coupon3MsgOn = true;" ion-button block>Redeem coupons for 20 tokens</button>
+    <button *ngIf="coupon3MsgOn === false" (click)="coupon3MsgOn = true;" ion-button block>Redeem coupon (10 tokens)</button>
 
   </ion-card>
 </ion-content>
